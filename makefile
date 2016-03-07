@@ -1,6 +1,6 @@
-Sortie: objet/main.o 
+Sortie: objects/main.o 
 	gcc -g $^ -o $@
 
-objet/main.o: src/main.c 
-	gcc -g -c src/main.c -o objet/main.o
+objects/main.o: src/main.c headers/header.h
+	gcc -g -c $< -o $@
 

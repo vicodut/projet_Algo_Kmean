@@ -1,43 +1,13 @@
 /* inclusion des librairies */
-#include <stdio.h>
-#include <stdlib.h>
+#include "../headers/header.h"
 
-#define DIM 1
-
-struct headerFile
-{
-	char sign[1];
-	int size;
-	int reserved;
-	int offset;
-};
-
-struct headerImg
-{
-	int size;
-	int width;
-	int height;
-	short plans;
-	short depth;
-	int compr;
-	int sizeTotal;
-	int hRes;
-	int vRes;
-	int nbColor;
-	int nbColorImp;
-};
-
-struct color
-{
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-	unsigned char reserved;
-
-};
 
 void main(int argc, char const *argv[])
 {
+
+//#####################################
+//### DECLARATION DES VARIABLES
+//#####################################
 	int i = 0, j = 0;
 	struct headerFile HF;
 	struct headerImg HI;
@@ -74,12 +44,15 @@ void main(int argc, char const *argv[])
 	fread(&HI.nbColor, sizeof(HI.nbColor), DIM, fichier);
 	fread(&HI.nbColorImp, sizeof(HI.nbColorImp), DIM, fichier);
 
+
+//#####################################
+//### AFFICHAGE DES ENTETES
+//#####################################
 	printf("\t - Entete du fichier - \n");
 	printf("Signe du fichier : %c", HF.sign[0]); printf("%c \n", HF.sign[1]);
 	printf("Taille du fichier : %d\n", HF.size);
 	printf("Champ reserve : %d\n", HF.reserved);
 	printf("Offset de l'image: %d\n", HF.offset);
-
 
 	printf("\n\t - Entete de l'image - \n");
 	printf("Taille de l'entete de l'image : %d\n", HI.size);
@@ -94,12 +67,26 @@ void main(int argc, char const *argv[])
 	printf("Nombre de couleur : %d\n", HI.nbColor);
 	printf("Nombre de couleur importante : %d\n", HI.nbColorImp);
 
+
+//#####################################
+//### STOCKAGE DES COULEURS
+//#####################################
+	// ## DECLARATION DU TABLEAU DE STOCKAGE
+	// ## PREMIERE PARTIE: LES LIGNES
+
+	// ## <- struct color** -> : ON CAST (convertis) LES ADRESSES ALOUEES EN TABLEAU DE COLOR 0 2 DIMENTIONS
+	// ## <- HI.height : la hauteur de l'image (nb de pixels en hauteur)
+	// ## sizeof(struct color*) : la taille prise par un "pixel" (color* puisque c'est juste 1 ligne du tableau)
 	tabColor = (struct color**) malloc(HI.height*(sizeof(struct color*)));
+
+	// ## SECONDE PARTIE: LES COLONNES
+	// ## MM PRICIPE QUE DESSUS SAUF QUE ON FAIT L'OPERATION POUR CHAQUES LIGNES
 	for (i = 0; i < HI.width; ++i)
 	{
 		tabColor[i] = (struct color*) malloc(HI.width*(sizeof(struct color)));
 	}
 
+	// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
 	for (i = 0; i < HI.width; ++i)
 	{
 		for (j = 0; j < HI.height; ++j)
@@ -123,7 +110,7 @@ void main(int argc, char const *argv[])
 
 
 //#####################################
-//### LECTURE DE L ENTETE DE L IMAGE
+//### ECRITURE DE L ENTETE DE L IMAGE
 //#####################################
 	fwrite(&HI.size, sizeof(HI.size), DIM, fichierOut);
 	fwrite(&HI.width, sizeof(HI.width), DIM, fichierOut);
@@ -137,6 +124,10 @@ void main(int argc, char const *argv[])
 	fwrite(&HI.nbColor, sizeof(HI.nbColor), DIM, fichierOut);
 	fwrite(&HI.nbColorImp, sizeof(HI.nbColorImp), DIM, fichierOut);
 
+
+//#####################################
+//### ECRITURE DES PIXELS
+//#####################################
 	for (i = 0; i < HI.width; ++i)
 	{
 		for (j = 0; j < HI.height; ++j)
@@ -148,6 +139,8 @@ void main(int argc, char const *argv[])
 		}
 	}
 
+
+	// ## ON FERME LES FICHIERS
 	fclose(fichier);
 	fclose(fichierOut);
 
