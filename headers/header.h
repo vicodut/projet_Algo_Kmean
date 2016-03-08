@@ -39,11 +39,17 @@ struct headerImg
 //#####################################
 //### STRUCTURE DES PIXELS
 //#####################################
-struct color
+typedef struct
 {
 	unsigned char r;
 	unsigned char g;
 	unsigned char b;
 	unsigned char reserved;
 
-};
+} color;
+
+
+//#####################################
+//### FONCTIONS LOCALES
+//#####################################
+void changeColor (color **tab, const int width, const int heigth);

@@ -11,7 +11,7 @@ void main(int argc, char const *argv[])
 	int i = 0, j = 0;
 	struct headerFile HF;
 	struct headerImg HI;
-	struct color **tabColor = NULL;
+	color **tabColor = NULL;
 
 	FILE *fichier;
 	FILE *fichierOut;
@@ -74,16 +74,16 @@ void main(int argc, char const *argv[])
 	// ## DECLARATION DU TABLEAU DE STOCKAGE
 	// ## PREMIERE PARTIE: LES LIGNES
 
-	// ## <- struct color** -> : ON CAST (convertis) LES ADRESSES ALOUEES EN TABLEAU DE COLOR 0 2 DIMENTIONS
+	// ## <- color** -> : ON CAST (convertis) LES ADRESSES ALOUEES EN TABLEAU DE COLOR 0 2 DIMENTIONS
 	// ## <- HI.height : la hauteur de l'image (nb de pixels en hauteur)
-	// ## sizeof(struct color*) : la taille prise par un "pixel" (color* puisque c'est juste 1 ligne du tableau)
-	tabColor = (struct color**) malloc(HI.height*(sizeof(struct color*)));
+	// ## sizeof(color*) : la taille prise par un "pixel" (color* puisque c'est juste 1 ligne du tableau)
+	tabColor = (color**) malloc(HI.height*(sizeof(color*)));
 
 	// ## SECONDE PARTIE: LES COLONNES
 	// ## MM PRICIPE QUE DESSUS SAUF QUE ON FAIT L'OPERATION POUR CHAQUES LIGNES
 	for (i = 0; i < HI.width; ++i)
 	{
-		tabColor[i] = (struct color*) malloc(HI.width*(sizeof(struct color)));
+		tabColor[i] = (color*) malloc(HI.width*(sizeof(color)));
 	}
 
 	// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
@@ -97,6 +97,8 @@ void main(int argc, char const *argv[])
 			fread(&tabColor[i][j].reserved, sizeof(tabColor[i][j].reserved), DIM, fichier);
 		}
 	}
+
+	changeColor(tabColor, HI.width, HI.height);
 
 
 //#####################################
