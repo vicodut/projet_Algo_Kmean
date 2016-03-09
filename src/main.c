@@ -2,7 +2,7 @@
 #include "../headers/header.h"
 
 
-void main(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
 
 //#####################################
@@ -24,7 +24,7 @@ void main(int argc, char const *argv[])
 //### LECTURE DE L ENTETE DU FICHIER
 //#####################################
 	fread(&HF, sizeof(HF), DIM, fichier);
-	
+
 
 //#####################################
 //### LECTURE DE L ENTETE DE L IMAGE
@@ -122,5 +122,7 @@ void main(int argc, char const *argv[])
 	// ## ON FERME LES FICHIERS
 	fclose(fichier);
 	fclose(fichierOut);
+
+	return 0;
 
 }
