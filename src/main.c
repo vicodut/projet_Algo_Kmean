@@ -87,18 +87,18 @@ void main(int argc, char const *argv[])
 	}
 
 	// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
-	for (i = 0; i < HI.width; ++i)
+	for (i = 0; i < HI.height; ++i)
 	{
-		for (j = 0; j < HI.height; ++j)
+		for (j = 0; j < HI.width; ++j)
 		{
-			fread(&tabColor[i][j].r, sizeof(tabColor[i][j].r), DIM, fichier);
-			fread(&tabColor[i][j].g, sizeof(tabColor[i][j].g), DIM, fichier);
 			fread(&tabColor[i][j].b, sizeof(tabColor[i][j].b), DIM, fichier);
+			fread(&tabColor[i][j].g, sizeof(tabColor[i][j].g), DIM, fichier);
+			fread(&tabColor[i][j].r, sizeof(tabColor[i][j].r), DIM, fichier);
 			fread(&tabColor[i][j].reserved, sizeof(tabColor[i][j].reserved), DIM, fichier);
 		}
 	}
 
-	changeColor(tabColor, HI.width, HI.height);
+	//changeColor(tabColor, HI.width, HI.height);
 
 
 //#####################################
@@ -130,13 +130,13 @@ void main(int argc, char const *argv[])
 //#####################################
 //### ECRITURE DES PIXELS
 //#####################################
-	for (i = 0; i < HI.width; ++i)
+	for (i = 0; i < HI.height; ++i)
 	{
-		for (j = 0; j < HI.height; ++j)
+		for (j = 0; j < HI.width; ++j)
 		{
-			fwrite(&tabColor[i][j].r, sizeof(tabColor[i][j].r), DIM, fichierOut);
-			fwrite(&tabColor[i][j].g, sizeof(tabColor[i][j].g), DIM, fichierOut);
 			fwrite(&tabColor[i][j].b, sizeof(tabColor[i][j].b), DIM, fichierOut);
+			fwrite(&tabColor[i][j].g, sizeof(tabColor[i][j].g), DIM, fichierOut);
+			fwrite(&tabColor[i][j].r, sizeof(tabColor[i][j].r), DIM, fichierOut);
 			fwrite(&tabColor[i][j].reserved, sizeof(tabColor[i][j].reserved), DIM, fichierOut);
 		}
 	}

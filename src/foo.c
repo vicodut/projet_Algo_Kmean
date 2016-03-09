@@ -11,7 +11,7 @@ void changeColor (color **tab, const int width, const int heigth)
 	{
 		for (j = 0; j < heigth; ++j)
 		{
-			tab[i][j].b = '1';
+			
 		}
 	}
 
