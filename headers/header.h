@@ -2,7 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 #define DIM 1
+
+#pragma pack(1)
 
 
 //#####################################
@@ -10,7 +13,7 @@
 //#####################################
 struct headerFile
 {
-	char sign[1];
+	char sign[2];
 	int size;
 	int reserved;
 	int offset;
@@ -47,6 +50,7 @@ typedef struct
 	unsigned char reserved;
 
 } color;
+
 
 
 //#####################################

@@ -15,34 +15,21 @@ void main(int argc, char const *argv[])
 
 	FILE *fichier;
 	FILE *fichierOut;
-	fichier = fopen("lena.bmp", "rb");
+	//fichier = fopen("lena.bmp", "rb");
+	fichier = fopen("lenaColor.bmp", "rb");
 	fichierOut = fopen("lenaOut.bmp", "wb");
 
 
 //#####################################
 //### LECTURE DE L ENTETE DU FICHIER
 //#####################################
-    fread(&HF.sign[0], sizeof(HF.sign[0]) , 1 , fichier);
-    fread(&HF.sign[1], sizeof(HF.sign[1]) , 1 , fichier);
-	fread(&HF.size, sizeof(HF.size), DIM, fichier);
-	fread(&HF.reserved, sizeof(HF.reserved), DIM, fichier);
-	fread(&HF.offset, sizeof(HF.offset), DIM, fichier);
+	fread(&HF, sizeof(HF), DIM, fichier);
 	
 
 //#####################################
 //### LECTURE DE L ENTETE DE L IMAGE
 //#####################################
-	fread(&HI.size, sizeof(HI.size), DIM, fichier);
-	fread(&HI.width, sizeof(HI.width), DIM, fichier);
-	fread(&HI.height, sizeof(HI.height), DIM, fichier);
-	fread(&HI.plans, sizeof(HI.plans), DIM, fichier);
-	fread(&HI.depth, sizeof(HI.depth), DIM, fichier);
-	fread(&HI.compr, sizeof(HI.compr), DIM, fichier);
-	fread(&HI.sizeTotal, sizeof(HI.sizeTotal), DIM, fichier);
-	fread(&HI.hRes, sizeof(HI.hRes), DIM, fichier);
-	fread(&HI.vRes, sizeof(HI.vRes), DIM, fichier);
-	fread(&HI.nbColor, sizeof(HI.nbColor), DIM, fichier);
-	fread(&HI.nbColorImp, sizeof(HI.nbColorImp), DIM, fichier);
+	fread(&HI, sizeof(HI), DIM, fichier);
 
 
 //#####################################
@@ -58,7 +45,7 @@ void main(int argc, char const *argv[])
 	printf("Taille de l'entete de l'image : %d\n", HI.size);
 	printf("Largeur de l'image : %d\n", HI.width);
 	printf("Hauteur de l'image : %d\n", HI.height);
-	printf("Nombre de plans : %headerImg\n", HI.plans);
+	printf("Nombre de plans : %hi\n", HI.plans);
 	printf("Profondeur de codage : %hi\n", HI.depth);
 	printf("Methode de compression : %d\n", HI.compr);
 	printf("Taile de l'image : %d\n", HI.sizeTotal);
@@ -66,6 +53,10 @@ void main(int argc, char const *argv[])
 	printf("Resolution verticale : %d\n", HI.vRes);
 	printf("Nombre de couleur : %d\n", HI.nbColor);
 	printf("Nombre de couleur importante : %d\n", HI.nbColorImp);
+
+	printf("Size of HF: %d\n", sizeof(HF));
+	printf("Size of HI: %d\n", sizeof(HI));
+	printf("Size of RGB: %d\n", sizeof(color));
 
 
 //#####################################
@@ -104,27 +95,13 @@ void main(int argc, char const *argv[])
 //#####################################
 //### ECRITURE DE L ENTETE DU FICHIER
 //#####################################
-	fwrite(&HF.sign[0], sizeof(HF.sign[0]), DIM, fichierOut);
-	fwrite(&HF.sign[1], sizeof(HF.sign[1]), DIM, fichierOut);
-	fwrite(&HF.size, sizeof(HF.size), DIM, fichierOut);
-	fwrite(&HF.reserved, sizeof(HF.reserved), DIM, fichierOut);
-	fwrite(&HF.offset, sizeof(HF.offset), DIM, fichierOut);
+	fwrite(&HF, sizeof(HF), DIM, fichierOut);
 
 
 //#####################################
 //### ECRITURE DE L ENTETE DE L IMAGE
 //#####################################
-	fwrite(&HI.size, sizeof(HI.size), DIM, fichierOut);
-	fwrite(&HI.width, sizeof(HI.width), DIM, fichierOut);
-	fwrite(&HI.height, sizeof(HI.height), DIM, fichierOut);
-	fwrite(&HI.plans, sizeof(HI.plans), DIM, fichierOut);
-	fwrite(&HI.depth, sizeof(HI.depth), DIM, fichierOut);
-	fwrite(&HI.compr, sizeof(HI.compr), DIM, fichierOut);
-	fwrite(&HI.sizeTotal, sizeof(HI.sizeTotal), DIM, fichierOut);
-	fwrite(&HI.hRes, sizeof(HI.hRes), DIM, fichierOut);
-	fwrite(&HI.vRes, sizeof(HI.vRes), DIM, fichierOut);
-	fwrite(&HI.nbColor, sizeof(HI.nbColor), DIM, fichierOut);
-	fwrite(&HI.nbColorImp, sizeof(HI.nbColorImp), DIM, fichierOut);
+	fwrite(&HI, sizeof(HI), DIM, fichierOut);
 
 
 //#####################################
