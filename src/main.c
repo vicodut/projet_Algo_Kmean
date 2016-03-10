@@ -80,10 +80,7 @@ int main(int argc, char const *argv[])
 		}
 	}
 
-<<<<<<< HEAD
-=======
 	borderColor(tabColor, header.img.width, header.img.height);
->>>>>>> dev_test
 
 
 //#####################################
