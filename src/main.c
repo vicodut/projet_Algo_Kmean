@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
 	printf("Signe du fichier : %c", header.sign[0]); printf("%c \n", header.sign[1]);
 	printf("Taille du fichier : %d\n", header.size);
 	printf("Champ reserve : %d\n", header.reserved);
-	printf("Offset de l'image: %d\n", header.offset);
+	printf("Offset de l'image: %d\n\n", header.offset);
 
 	printf("\n\t - Entete de l'image - \n");
 	printf("Taille de l'entete de l'image : %d\n",  header.img.size);
@@ -48,10 +48,9 @@ int main(int argc, char const *argv[])
 	printf("Nombre de couleur : %d\n",  header.img.nbColor);
 	printf("Nombre de couleur importante : %d\n",  header.img.nbColorImp);
 
-	printf("Size of header: %d\n", sizeof(header));
+	printf("Size of header: %d\n\n", sizeof(header));
 	printf("Size of HI: %d\n", sizeof(header.img));
 	printf("Size of RGB: %d\n", sizeof(color));
-	printf("TEst: :) \n");
 
 
 //#####################################
@@ -81,6 +80,10 @@ int main(int argc, char const *argv[])
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	borderColor(tabColor, header.img.width, header.img.height);
+>>>>>>> dev_test
 
 
 //#####################################

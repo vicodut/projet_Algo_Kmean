@@ -59,4 +59,4 @@ typedef struct
 //#####################################
 //### FONCTIONS LOCALES
 //#####################################
-void changeColor (color **tab, const int width, const int heigth);
+void borderColor (color **tab, const int width, const int heigth);
