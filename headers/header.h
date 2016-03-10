@@ -9,18 +9,6 @@
 
 
 //#####################################
-//### STRUCTURE DE L ENTETE DU FICHIER
-//#####################################
-struct headerFile
-{
-	char sign[2];
-	int size;
-	int reserved;
-	int offset;
-};
-
-
-//#####################################
 //### STRUCTURE DE L ENTETE DE L IMAGE
 //#####################################
 struct headerImg
@@ -36,6 +24,21 @@ struct headerImg
 	int vRes;
 	int nbColor;
 	int nbColorImp;
+};
+
+
+
+//#####################################
+//### STRUCTURE DE L ENTETE DU FICHIER
+//#####################################
+struct headerFile
+{
+	char sign[2];
+	int size;
+	int reserved;
+	int offset;
+
+	struct headerImg img;
 };
 
 
