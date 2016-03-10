@@ -47,10 +47,10 @@ struct headerFile
 //#####################################
 typedef struct
 {
-	unsigned char r;
-	unsigned char g;
 	unsigned char b;
-	unsigned char reserved;
+	unsigned char g;
+	unsigned char r;
+//	unsigned char reserved;
 
 } color;
 
