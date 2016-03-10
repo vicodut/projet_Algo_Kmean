@@ -15,8 +15,8 @@ int main(int argc, char const *argv[])
 
 	FILE *fichier;
 	FILE *fichierOut;
-	//fichier = fopen("lena.bmp", "rb");
-	fichier = fopen("lenaColor.bmp", "rb");
+	fichier = fopen("lena.bmp", "rb");
+	//fichier = fopen("lenaColor.bmp", "rb");
 	fichierOut = fopen("lenaOut.bmp", "wb");
 
 
@@ -80,7 +80,7 @@ int main(int argc, char const *argv[])
 		}
 	}
 
-	borderColor(tabColor, header.img.width, header.img.height);
+	borderBW(tabColor, header.img.width, header.img.height);
 
 
 //#####################################
