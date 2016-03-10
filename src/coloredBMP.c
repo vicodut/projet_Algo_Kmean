@@ -50,7 +50,7 @@ void borderColor (color **tab, const int width, const int heigth)
 	{
 		for (j = 0; j < 10; ++j)
 		{
-			tab[i][j].b = 255;
+			tab[i][j].b = 0;
 			tab[i][j].g = 0;
 			tab[i][j].r = 0;
 		}
@@ -70,7 +70,7 @@ void borderColor (color **tab, const int width, const int heigth)
 	{
 		for (j = width - 1; j >= width - 11; --j)
 		{
-			tab[i][j].b = 0;
+			tab[i][j].b = 255;
 			tab[i][j].g = 0;
 			tab[i][j].r = 0;
 		}
