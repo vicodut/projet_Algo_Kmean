@@ -83,7 +83,6 @@ int main(int argc, char const *argv[])
 	}
 
 
-
 //#####################################
 //### ECRITURE DE L ENTETE DU FICHIER
 //#####################################
