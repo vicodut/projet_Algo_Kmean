@@ -9,6 +9,7 @@ int main(int argc, char const *argv[])
 //### DECLARATION DES VARIABLES
 //#####################################
 	int i = 0, j = 0;
+	char tamp = 0;
 	struct headerFile header;
 	color **tabColor = NULL;
 
@@ -50,6 +51,7 @@ int main(int argc, char const *argv[])
 	printf("Size of header: %d\n", sizeof(header));
 	printf("Size of HI: %d\n", sizeof(header.img));
 	printf("Size of RGB: %d\n", sizeof(color));
+	printf("TEst: :) \n");
 
 
 //#####################################
@@ -71,16 +73,14 @@ int main(int argc, char const *argv[])
 	}
 
 	// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
-	for (i = 0; i <  header.img.height; ++i)
+	for (i = header.img.height - 1; i >= 0; --i)
 	{
-		for (j = 0; j <  header.img.width; ++j)
+		for (j = 0; j < header.img.width; ++j)
 		{
-			fread(&tabColor[i][j].b, sizeof(tabColor[i][j].b), DIM, fichier);
-			fread(&tabColor[i][j].g, sizeof(tabColor[i][j].g), DIM, fichier);
-			fread(&tabColor[i][j].r, sizeof(tabColor[i][j].r), DIM, fichier);
-			fread(&tabColor[i][j].reserved, sizeof(tabColor[i][j].reserved), DIM, fichier);
+			fread(&tabColor[i][j], sizeof(tabColor[i][j]), DIM, fichier);
 		}
 	}
+
 
 
 //#####################################
@@ -92,14 +92,11 @@ int main(int argc, char const *argv[])
 //#####################################
 //### ECRITURE DES PIXELS
 //#####################################
-	for (i = 0; i <  header.img.height; ++i)
+	for (i = header.img.height - 1; i >= 0; --i)
 	{
 		for (j = 0; j <  header.img.width; ++j)
 		{
-			fwrite(&tabColor[i][j].b, sizeof(tabColor[i][j].b), DIM, fichierOut);
-			fwrite(&tabColor[i][j].g, sizeof(tabColor[i][j].g), DIM, fichierOut);
-			fwrite(&tabColor[i][j].r, sizeof(tabColor[i][j].r), DIM, fichierOut);
-			fwrite(&tabColor[i][j].reserved, sizeof(tabColor[i][j].reserved), DIM, fichierOut);
+			fwrite(&tabColor[i][j], sizeof(tabColor[i][j]), DIM, fichierOut);
 		}
 	}
 
