@@ -81,7 +81,7 @@ int main(int argc, char const *argv[])
 		}
 	}
 
-	changeColor(tabColor, header.img.width, header.img.height);
+	borderColor(tabColor, header.img.width, header.img.height);
 
 
 //#####################################
