@@ -50,6 +50,7 @@ int main(int argc, char const *argv[])
 	printf("Size of header: %d\n", sizeof(header));
 	printf("Size of HI: %d\n", sizeof(header.img));
 	printf("Size of RGB: %d\n", sizeof(color));
+	printf("TEst: :) \n");
 
 
 //#####################################
