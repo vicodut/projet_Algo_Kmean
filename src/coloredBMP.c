@@ -87,3 +87,29 @@ void borderColor (color **tab, const int width, const int heigth)
 	}
 
 }
+
+void readColor (color **tab, const int width, const int heigth, FILE *fichier)
+{
+	int i, j;
+
+	for (i = heigth - 1; i >= 0; --i)
+	{
+		for (j = 0; j < width; ++j)
+		{
+			fread(&tab[i][j], sizeof(tab[i][j]), DIM, fichier);
+		}
+	}
+}
+
+void writeColor (color **tab, const int width, const int heigth, FILE *fichier)
+{
+	int i, j;
+	
+	for (i = heigth - 1; i >= 0; --i)
+	{
+		for (j = 0; j < width; ++j)
+		{
+			fwrite(&tab[i][j], sizeof(tab[i][j]), DIM, fichier);
+		}
+	}
+}

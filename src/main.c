@@ -15,8 +15,8 @@ int main(int argc, char const *argv[])
 
 	FILE *fichier;
 	FILE *fichierOut;
-	fichier = fopen("lena.bmp", "rb");
-	//fichier = fopen("lenaColor.bmp", "rb");
+	//fichier = fopen("lena.bmp", "rb");
+	fichier = fopen("lenaColor.bmp", "rb");
 	fichierOut = fopen("lenaOut.bmp", "wb");
 
 
@@ -72,14 +72,7 @@ int main(int argc, char const *argv[])
 	}
 
 	// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
-	for (i = header.img.height - 1; i >= 0; --i)
-	{
-		for (j = 0; j < header.img.width; ++j)
-		{
-			fread(&tabColor[i][j], sizeof(tabColor[i][j]), DIM, fichier);
-		}
-	}
-
+	readColor(tabColor, header.img.width, header.img.height, fichier);
 	borderBW(tabColor, header.img.width, header.img.height);
 
 
@@ -92,13 +85,7 @@ int main(int argc, char const *argv[])
 //#####################################
 //### ECRITURE DES PIXELS
 //#####################################
-	for (i = header.img.height - 1; i >= 0; --i)
-	{
-		for (j = 0; j <  header.img.width; ++j)
-		{
-			fwrite(&tabColor[i][j], sizeof(tabColor[i][j]), DIM, fichierOut);
-		}
-	}
+	writeColor(tabColor, header.img.width, header.img.height, fichierOut);
 
 
 	// ## ON FERME LES FICHIERS

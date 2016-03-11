@@ -60,4 +60,7 @@ typedef struct
 //### FONCTIONS LOCALES
 //#####################################
 void borderColor (color **tab, const int width, const int heigth);
+void readColor (color **tab, const int width, const int heigth, FILE *fichier);
+void writeColor (color **tab, const int width, const int heigth, FILE *fichier);
+
 void borderBW (color **tab, const int width, const int heigth);
