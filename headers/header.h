@@ -54,6 +54,16 @@ typedef struct
 
 } color;
 
+typedef struct
+{
+	unsigned char b;
+	unsigned char g;
+	unsigned char r;
+	unsigned char reserved;
+
+} palette;
+
+
 
 
 //#####################################
@@ -63,4 +73,8 @@ void borderColor (color **tab, const int width, const int heigth);
 void readColor (color **tab, const int width, const int heigth, FILE *fichier);
 void writeColor (color **tab, const int width, const int heigth, FILE *fichier);
 
-void borderBW (color **tab, const int width, const int heigth);
+void borderBW (unsigned char **tab, const int width, const int heigth);
+void readBW (unsigned char **tab, const int width, const int heigth, FILE *fichier);
+void writeBW (unsigned char **tab, const int width, const int heigth, FILE *fichier);
+void readPalette (palette **tab, FILE *fichier);
+void writePalette (palette **tab, FILE *fichier);

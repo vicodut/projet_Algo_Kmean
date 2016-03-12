@@ -11,12 +11,11 @@ int main(int argc, char const *argv[])
 	int i = 0, j = 0;
 	char tamp = 0;
 	struct headerFile header;
-	color **tabColor = NULL;
 
 	FILE *fichier;
 	FILE *fichierOut;
-	//fichier = fopen("lena.bmp", "rb");
-	fichier = fopen("lenaColor.bmp", "rb");
+	fichier = fopen("lena.bmp", "rb");
+	//fichier = fopen("lenaColor.bmp", "rb");
 	fichierOut = fopen("lenaOut.bmp", "wb");
 
 
@@ -52,40 +51,83 @@ int main(int argc, char const *argv[])
 	printf("Size of HI: %d\n", sizeof(header.img));
 	printf("Size of RGB: %d\n", sizeof(color));
 
+	if (header.img.nbColor != 0)
+	{
+		palette **tabColor = NULL;
+		unsigned char **tabPix = NULL;
+		printf("\n Codage des couleurs avec une palette\n");
+
 
 //#####################################
 //### STOCKAGE DES COULEURS
 //#####################################
-	// ## DECLARATION DU TABLEAU DE STOCKAGE
-	// ## PREMIERE PARTIE: LES LIGNES
+		tabColor = (palette**) malloc( header.img.nbColor*(sizeof(palette*)));
 
-	// ## <- color** -> : ON CAST (convertis) LES ADRESSES ALOUEES EN TABLEAU DE COLOR 0 2 DIMENTIONS
-	// ## <- HI.height : la hauteur de l'image (nb de pixels en hauteur)
-	// ## sizeof(color*) : la taille prise par un "pixel" (color* puisque c'est juste 1 ligne du tableau)
-	tabColor = (color**) malloc( header.img.height*(sizeof(color*)));
+		readPalette(tabColor, fichier);
 
-	// ## SECONDE PARTIE: LES COLONNES
-	// ## MM PRICIPE QUE DESSUS SAUF QUE ON FAIT L'OPERATION POUR CHAQUES LIGNES
-	for (i = 0; i < header.img.width; ++i)
-	{
-		tabColor[i] = (color*) malloc( header.img.width*(sizeof(color)));
-	}
+		tabPix = (unsigned char**) malloc( header.img.height*(sizeof(unsigned char*)));
 
-	// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
-	readColor(tabColor, header.img.width, header.img.height, fichier);
-	borderBW(tabColor, header.img.width, header.img.height);
+		for (i = 0; i < header.img.width; ++i)
+		{
+			tabPix[i] = (unsigned char*) malloc( header.img.width*(sizeof(unsigned char)));
+		}
+
+		readBW(tabPix, header.img.width, header.img.height, fichier);
+		borderBW(tabPix, header.img.width, header.img.height);
 
 
 //#####################################
 //### ECRITURE DE L ENTETE DU FICHIER
 //#####################################
-	fwrite(&header, sizeof(header), DIM, fichierOut);
+		fwrite(&header, sizeof(header), DIM, fichierOut);
 
 
 //#####################################
 //### ECRITURE DES PIXELS
 //#####################################
-	writeColor(tabColor, header.img.width, header.img.height, fichierOut);
+		writePalette(tabColor, fichierOut);
+		writeBW(tabPix, header.img.width, header.img.height, fichierOut);
+
+	} else {
+		color **tabColor = NULL;
+
+//#####################################
+//### STOCKAGE DES COULEURS
+//#####################################
+		// ## DECLARATION DU TABLEAU DE STOCKAGE
+		// ## PREMIERE PARTIE: LES LIGNES
+
+		// ## <- color** -> : ON CAST (convertis) LES ADRESSES ALOUEES EN TABLEAU DE COLOR 0 2 DIMENTIONS
+		// ## <- HI.height : la hauteur de l'image (nb de pixels en hauteur)
+		// ## sizeof(color*) : la taille prise par un "pixel" (color* puisque c'est juste 1 ligne du tableau)
+		tabColor = (color**) malloc( header.img.height*(sizeof(color*)));
+
+		// ## SECONDE PARTIE: LES COLONNES
+		// ## MM PRICIPE QUE DESSUS SAUF QUE ON FAIT L'OPERATION POUR CHAQUES LIGNES
+		for (i = 0; i < header.img.width; ++i)
+		{
+			tabColor[i] = (color*) malloc( header.img.width*(sizeof(color)));
+		}
+
+
+
+		// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
+		readColor(tabColor, header.img.width, header.img.height, fichier);
+		borderColor(tabColor, header.img.width, header.img.height);
+
+
+//#####################################
+//### ECRITURE DE L ENTETE DU FICHIER
+//#####################################
+		fwrite(&header, sizeof(header), DIM, fichierOut);
+
+
+//#####################################
+//### ECRITURE DES PIXELS
+//#####################################
+		writeColor(tabColor, header.img.width, header.img.height, fichierOut);
+	}
+
 
 
 	// ## ON FERME LES FICHIERS

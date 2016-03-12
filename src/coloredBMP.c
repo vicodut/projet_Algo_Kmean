@@ -88,11 +88,11 @@ void borderColor (color **tab, const int width, const int heigth)
 
 }
 
-void readColor (color **tab, const int width, const int heigth, FILE *fichier)
+void readColor (color **tab, const int width, const int height, FILE *fichier)
 {
 	int i, j;
 
-	for (i = heigth - 1; i >= 0; --i)
+	for (i = height - 1; i >= 0; --i)
 	{
 		for (j = 0; j < width; ++j)
 		{
@@ -101,11 +101,11 @@ void readColor (color **tab, const int width, const int heigth, FILE *fichier)
 	}
 }
 
-void writeColor (color **tab, const int width, const int heigth, FILE *fichier)
+void writeColor (color **tab, const int width, const int height, FILE *fichier)
 {
 	int i, j;
 	
-	for (i = heigth - 1; i >= 0; --i)
+	for (i = height - 1; i >= 0; --i)
 	{
 		for (j = 0; j < width; ++j)
 		{
