@@ -80,5 +80,13 @@ void writeBW (unsigned char **tab, const int width, const int heigth, FILE *fich
 palette ** readPalette (palette **tab, FILE *fichier, int nbColor);
 void writePalette (palette **tab, FILE *fichier);
 
+void borderBW1D (unsigned char *tab, const int width, const int heigth);
+unsigned char * readBW1D (unsigned char *tab, const int width, const int height, FILE *fichier);
+void writeBW1D (unsigned char *tab, const int width, const int heigth, FILE *fichier);
+palette * readPalette1D (palette *tab, FILE *fichier, int nbColor);
+void writePalette1D (palette *tab, FILE *fichier);
+
+void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header);
+void tab1d(FILE *fichier, FILE *fichierOut, struct headerFile header);
 void readHeader(struct headerFile *header, FILE *fichier);
 int menu();
