@@ -1,6 +1,7 @@
 /* inclusion des librairies */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 #define DIM 1
@@ -70,11 +71,14 @@ typedef struct
 //### FONCTIONS LOCALES
 //#####################################
 void borderColor (color **tab, const int width, const int heigth);
-void readColor (color **tab, const int width, const int heigth, FILE *fichier);
+color ** readColor (color **tab, const int width, const int heigth, FILE *fichier);
 void writeColor (color **tab, const int width, const int heigth, FILE *fichier);
 
 void borderBW (unsigned char **tab, const int width, const int heigth);
-void readBW (unsigned char **tab, const int width, const int heigth, FILE *fichier);
+unsigned char ** readBW (unsigned char **tab, const int width, const int height, FILE *fichier);
 void writeBW (unsigned char **tab, const int width, const int heigth, FILE *fichier);
-void readPalette (palette **tab, FILE *fichier);
+palette ** readPalette (palette **tab, FILE *fichier, int nbColor);
 void writePalette (palette **tab, FILE *fichier);
+
+void readHeader(struct headerFile *header, FILE *fichier);
+int menu();

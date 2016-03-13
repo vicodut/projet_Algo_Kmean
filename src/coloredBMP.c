@@ -88,9 +88,18 @@ void borderColor (color **tab, const int width, const int heigth)
 
 }
 
-void readColor (color **tab, const int width, const int height, FILE *fichier)
+color ** readColor (color **tab, const int width, const int height, FILE *fichier)
 {
 	int i, j;
+
+	
+
+	tab = (color**) malloc( height*(sizeof(color*)));
+
+	for (i = 0; i < height; ++i)
+	{
+		tab[i] = (color*) malloc( width*(sizeof(color)));
+	}
 
 	for (i = height - 1; i >= 0; --i)
 	{
@@ -99,6 +108,7 @@ void readColor (color **tab, const int width, const int height, FILE *fichier)
 			fread(&tab[i][j], sizeof(tab[i][j]), DIM, fichier);
 		}
 	}
+	return tab;
 }
 
 void writeColor (color **tab, const int width, const int height, FILE *fichier)
