@@ -4,12 +4,12 @@
 
 int main(int argc, char const *argv[])
 {
+	if(argc > 1)
+	{
 
 //#####################################
 //### DECLARATION DES VARIABLES
 //#####################################
-	if(argc > 1)
-	{
 		char filename[20];
 		struct headerFile header;
 
@@ -19,7 +19,7 @@ int main(int argc, char const *argv[])
 
 		fichier = fopen(filename, "rb");
 		fichierOut = fopen("lenaOut.bmp", "wb");
-
+		
 		if (fichier)
 		{
 			readHeader(&header, fichier);

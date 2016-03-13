@@ -5,7 +5,6 @@
 void borderColor (color **tab, const int width, const int heigth)
 {
 	int i = 0, j = 0;
-	printf("Hello World + %d + %d\n", width, heigth);
 
 	for (i = 0; i < 10; ++i)
 	{
@@ -94,20 +93,21 @@ color ** readColor (color **tab, const int width, const int height, FILE *fichie
 
 	
 
-	tab = (color**) malloc( height*(sizeof(color*)));
+	tab = ( color ** ) malloc( height * ( sizeof(color*) ));
 
 	for (i = 0; i < height; ++i)
 	{
-		tab[i] = (color*) malloc( width*(sizeof(color)));
+		tab[i] = ( color * ) malloc( width * ( sizeof(color) ));
 	}
 
 	for (i = height - 1; i >= 0; --i)
 	{
 		for (j = 0; j < width; ++j)
 		{
-			fread(&tab[i][j], sizeof(tab[i][j]), DIM, fichier);
+			fread(&tab[i][j], sizeof( tab[i][j] ), DIM, fichier);
 		}
 	}
+	
 	return tab;
 }
 
@@ -119,7 +119,7 @@ void writeColor (color **tab, const int width, const int height, FILE *fichier)
 	{
 		for (j = 0; j < width; ++j)
 		{
-			fwrite(&tab[i][j], sizeof(tab[i][j]), DIM, fichier);
+			fwrite(&tab[i][j], sizeof( tab[i][j] ), DIM, fichier);
 		}
 	}
 }

@@ -5,7 +5,6 @@
 void borderBW (unsigned char **tab, const int width, const int height)
 {
 	int i = 0, j = 0;
-	printf("Hello World + %d + %d\n", width, height);
 
 	for (i = 0; i < width; ++i)
 	{
@@ -42,11 +41,11 @@ unsigned char ** readBW (unsigned char **tab, const int width, const int height,
 {
 	int i, j;
 
-	tab = (unsigned char**) malloc( height*(sizeof(unsigned char*)));
+	tab = ( unsigned char ** ) malloc( height*(sizeof( unsigned char * )));
 
 	for (i = 0; i < height; ++i)
 	{
-		tab[i] = (unsigned char*) malloc( width*(sizeof(unsigned char)));
+		tab[i] = ( unsigned char * ) malloc( width * (sizeof( unsigned char )));
 	}
 
 	for (i = height - 1; i >= 0; --i)
@@ -68,7 +67,7 @@ void writeBW (unsigned char **tab, const int width, const int height, FILE *fich
 	{
 		for (j = 0; j < width; ++j)
 		{
-			fwrite(&tab[i][j], sizeof(tab[i][j]), DIM, fichier);
+			fwrite(&tab[i][j], sizeof( tab[i][j] ), DIM, fichier);
 		}
 	}
 }
@@ -77,11 +76,11 @@ palette ** readPalette (palette **tab, FILE *fichier, int nbColor)
 {
 	int i = 0;
 	
-	tab = (palette**) malloc( nbColor*(sizeof(palette*)));
+	tab = ( palette ** ) malloc( nbColor * (sizeof( palette * )));
 
-	for (i = 0; i < 256; ++i)
+	for (i = 0; i < nbColor; ++i)
 	{
-		fread(&tab[i], sizeof(tab[i]), DIM, fichier);
+		fread(&tab[i], sizeof( tab[i] ), DIM, fichier);
 	}
 
 	return tab;
@@ -92,7 +91,7 @@ void writePalette (palette **tab, FILE *fichier)
 	int i = 0;
 	for (i = 0; i < 256; ++i)
 	{
-		fwrite(&tab[i], sizeof(tab[i]), DIM, fichier);
+		fwrite(&tab[i], sizeof( tab[i] ), DIM, fichier);
 	}
 }
 

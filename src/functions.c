@@ -60,7 +60,7 @@ void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 
 
 //#####################################
-//### STOCKAGE DES COULEURS
+//### STOCKAGE DES COULEURS &modifs
 //#####################################
 		tabColor = readPalette(tabColor, fichier, header.img.nbColor);
 		tabPix = readBW(tabPix, header.img.width, header.img.height, fichier);
@@ -71,12 +71,12 @@ void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 //### ECRITURE DE L ENTETE DU FICHIER
 //#####################################
 		fwrite(&header, sizeof(header), DIM, fichierOut);
+		writePalette(tabColor, fichierOut);
 
 
 //#####################################
 //### ECRITURE DES PIXELS
 //#####################################
-		writePalette(tabColor, fichierOut);
 		writeBW(tabPix, header.img.width, header.img.height, fichierOut);
 
 	} else {
@@ -143,15 +143,15 @@ void tab1d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 
 	} else {
 		printf("\n Codage des couleurs sans palette\n");
-		color **tabColor = NULL;
+		color *tabColor = NULL;
 
 
 //#####################################
 //### STOCKAGE DES COULEURS & MODIFs
 //#####################################
 		// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
-		tabColor = readColor(tabColor, header.img.width, header.img.height, fichier);
-		borderColor(tabColor, header.img.width, header.img.height);
+		tabColor = readColor1D(tabColor, header.img.width, header.img.height, fichier);
+		borderColor1D(tabColor, header.img.width, header.img.height);
 
 
 //#####################################
@@ -163,7 +163,7 @@ void tab1d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 //#####################################
 //### ECRITURE DES PIXELS
 //#####################################
-		writeColor(tabColor, header.img.width, header.img.height, fichierOut);
+		writeColor1D(tabColor, header.img.width, header.img.height, fichierOut);
 	}
 
 

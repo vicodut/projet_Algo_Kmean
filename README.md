@@ -11,5 +11,7 @@
  * [x] Gestion images couleurs
  * [x] Gestion images n&b
  * [x] Gestion memoire 2d
- * [x] Gestion memoire 1d	
+ * [x] Gestion memoire 1d
+ * [ ] Couleur de bordure memoire 2d image couleur
+ * [ ] Alocation dynamique de la mémoire (pas avant la boucle mais pendant)
 
