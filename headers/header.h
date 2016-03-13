@@ -74,6 +74,10 @@ void borderColor (color **tab, const int width, const int heigth);
 color ** readColor (color **tab, const int width, const int heigth, FILE *fichier);
 void writeColor (color **tab, const int width, const int heigth, FILE *fichier);
 
+void borderColor1D (color *tab, const int width, const int heigth);
+color * readColor1D (color *tab, const int width, const int heigth, FILE *fichier);
+void writeColor1D (color *tab, const int width, const int heigth, FILE *fichier);
+
 void borderBW (unsigned char **tab, const int width, const int heigth);
 unsigned char ** readBW (unsigned char **tab, const int width, const int height, FILE *fichier);
 void writeBW (unsigned char **tab, const int width, const int heigth, FILE *fichier);
