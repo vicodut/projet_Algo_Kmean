@@ -13,8 +13,8 @@ int main(int argc, char const *argv[])
 		char filename[20];
 		struct headerFile header;
 
-		FILE *fichier;
-		FILE *fichierOut;
+		FILE *fichier = NULL;
+		FILE *fichierOut = NULL;
 		strcpy(filename, argv[1]);
 
 		fichier = fopen(filename, "rb");
