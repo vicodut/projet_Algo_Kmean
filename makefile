@@ -1,4 +1,4 @@
-Sortie: objects/main.o objects/coloredBMP.o objects/bnwBMP.o objects/functions.o objects/bnwBMP1D.o objects/coloredBMP1D.o
+Sortie: objects/main.o objects/coloredBMP.o objects/bnwBMP.o objects/functions.o objects/bnwBMP1D.o objects/coloredBMP1D.o objects/kmeans.o
 	gcc -g $^ -o $@  -pedantic -std=c99
 
 objects/main.o: src/main.c headers/header.h
@@ -17,5 +17,8 @@ objects/bnwBMP1D.o: src/bnwBMP1D.c headers/header.h
 	gcc -g -c $< -o $@  -pedantic -std=c99
 
 objects/functions.o: src/functions.c headers/header.h 
+	gcc -g -c $< -o $@  -pedantic -std=c99
+
+objects/kmeans.o: src/kmeans.c headers/header.h 
 	gcc -g -c $< -o $@  -pedantic -std=c99
 

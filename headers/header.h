@@ -3,8 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-
+//#####################################
+//### VARIABLES GLOBALES
+//#####################################
 #define DIM 1
+
+//-------------------------------------
+// - Nombre de Clusters
+//-------------------------------------
+#define K 7
 
 #pragma pack(1)
 
@@ -64,7 +71,15 @@ typedef struct
 
 } palette;
 
-
+//#####################################
+//### STRUCTURE CLUSTERS
+//#####################################
+typedef struct 
+{
+	unsigned int x;
+	unsigned int y;
+	unsigned int nbPixels;
+} clusters;
 
 
 //#####################################
@@ -99,3 +114,7 @@ void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header);
 void tab1d(FILE *fichier, FILE *fichierOut, struct headerFile header);
 void readHeader(struct headerFile *header, FILE *fichier);
 int menu();
+
+// Fonction KMean
+void kmeans(unsigned char **tab, const int width, const int height);
+int findNearestCluster(clusters cluster[K], unsigned char **tab, int x, int y);
