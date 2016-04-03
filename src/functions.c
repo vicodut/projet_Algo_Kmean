@@ -59,24 +59,24 @@ void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 		unsigned char **tabPix = NULL;
 
 
-//#####################################
-//### STOCKAGE DES COULEURS &modifs
-//#####################################
+	//#####################################
+	//### STOCKAGE DES COULEURS &modifs
+	//#####################################
 		tabColor = readPalette(tabColor, fichier, header.img.nbColor);
 		tabPix = readBW(tabPix, header.img.width, header.img.height, fichier);
 		borderBW(tabPix, header.img.width, header.img.height);
 
 
-//#####################################
-//### ECRITURE DE L ENTETE DU FICHIER
-//#####################################
+	//#####################################
+	//### ECRITURE DE L ENTETE DU FICHIER
+	//#####################################
 		fwrite(&header, sizeof(header), DIM, fichierOut);
 		writePalette(tabColor, fichierOut);
 
 
-//#####################################
-//### ECRITURE DES PIXELS
-//#####################################
+	//#####################################
+	//### ECRITURE DES PIXELS
+	//#####################################
 		writeBW(tabPix, header.img.width, header.img.height, fichierOut);
 
 	} else {
@@ -84,23 +84,23 @@ void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 		color **tabColor = NULL;
 
 
-//#####################################
-//### STOCKAGE DES COULEURS & MODIFs
-//#####################################
+	//#####################################
+	//### STOCKAGE DES COULEURS & MODIFs
+	//#####################################
 		// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
 		tabColor = readColor(tabColor, header.img.width, header.img.height, fichier);
 		borderColor(tabColor, header.img.width, header.img.height);
 
 
-//#####################################
-//### ECRITURE DE L ENTETE DU FICHIER
-//#####################################
+	//#####################################
+	//### ECRITURE DE L ENTETE DU FICHIER
+	//#####################################
 		fwrite(&header, sizeof(header), DIM, fichierOut);
 
 
-//#####################################
-//### ECRITURE DES PIXELS
-//#####################################
+	//#####################################
+	//### ECRITURE DES PIXELS
+	//#####################################
 		writeColor(tabColor, header.img.width, header.img.height, fichierOut);
 	}
 
@@ -121,23 +121,23 @@ void tab1d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 		unsigned char *tabPix = NULL;
 
 
-//#####################################
-//### STOCKAGE DES COULEURS
-//#####################################
+	//#####################################
+	//### STOCKAGE DES COULEURS
+	//#####################################
 		tabColor = readPalette1D(tabColor, fichier, header.img.nbColor);
 		tabPix = readBW1D(tabPix, header.img.width, header.img.height, fichier);
 		borderBW1D(tabPix, header.img.width, header.img.height);
 
 
-//#####################################
-//### ECRITURE DE L ENTETE DU FICHIER
-//#####################################
+	//#####################################
+	//### ECRITURE DE L ENTETE DU FICHIER
+	//#####################################
 		fwrite(&header, sizeof(header), DIM, fichierOut);
 
 
-//#####################################
-//### ECRITURE DES PIXELS
-//#####################################
+	//#####################################
+	//### ECRITURE DES PIXELS
+	//#####################################
 		writePalette1D(tabColor, fichierOut);
 		writeBW1D(tabPix, header.img.width, header.img.height, fichierOut);
 
@@ -146,23 +146,23 @@ void tab1d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 		color *tabColor = NULL;
 
 
-//#####################################
-//### STOCKAGE DES COULEURS & MODIFs
-//#####################################
+	//#####################################
+	//### STOCKAGE DES COULEURS & MODIFs
+	//#####################################
 		// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
 		tabColor = readColor1D(tabColor, header.img.width, header.img.height, fichier);
 		borderColor1D(tabColor, header.img.width, header.img.height);
 
 
-//#####################################
-//### ECRITURE DE L ENTETE DU FICHIER
-//#####################################
+	//#####################################
+	//### ECRITURE DE L ENTETE DU FICHIER
+	//#####################################
 		fwrite(&header, sizeof(header), DIM, fichierOut);
 
 
-//#####################################
-//### ECRITURE DES PIXELS
-//#####################################
+	//#####################################
+	//### ECRITURE DES PIXELS
+	//#####################################
 		writeColor1D(tabColor, header.img.width, header.img.height, fichierOut);
 	}
 

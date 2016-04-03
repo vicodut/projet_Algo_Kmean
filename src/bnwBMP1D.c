@@ -73,6 +73,7 @@ palette * readPalette1D (palette *tab, FILE *fichier, int nbColor)
 void writePalette1D (palette *tab, FILE *fichier)
 {
 	int i = 0;
+	
 	for (i = 0; i < 256; ++i)
 	{
 		fwrite(&tab[i], sizeof( tab[i] ), DIM, fichier);
