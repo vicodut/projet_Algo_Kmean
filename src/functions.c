@@ -1,5 +1,6 @@
 /* inclusion des librairies */
 #include "../headers/header.h"
+#include "../headers/kmeans.h"
 
 int menu()
 {
@@ -52,6 +53,9 @@ void readHeader(struct headerFile* header, FILE *fichier)
 
 void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 {
+	int res = 0;
+	int cluster = 0, iteration = 0;
+
 	if (header.img.nbColor != 0)
 	{
 		printf("\n Codage des couleurs avec une palette\n");
@@ -89,7 +93,42 @@ void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 	//#####################################
 		// ## ON REMPLI LE TABLEAU METHODE CLASSIQUE DOUBLE BOUCLE
 		tabColor = readColor(tabColor, header.img.width, header.img.height, fichier);
-		borderColor(tabColor, header.img.width, header.img.height);
+
+		//----------------------------------------
+		// - K-moyenne
+		//----------------------------------------
+		printf("- Kmoyenniser l'image ?\n");
+		printf("1- Oui\n");
+		printf("0- Non\n");
+		printf("$> ");
+		
+		scanf("%d", &res);
+
+		if (res == 1)
+		{
+			printf("========================\n");
+			printf("- Nombre de noyeau: ");
+			scanf("%d", &K);
+			printf("- Nomre d'iteration: ");
+			scanf("%d", &N);
+			
+			kmeans(tabColor, header.img.width, header.img.height, header);
+		}
+
+		//----------------------------------------
+		// - Bordure
+		//----------------------------------------
+		printf("- Donner une bordure ?\n");
+		printf("1- Oui\n");
+		printf("0- Non\n");
+		printf("$> ");
+		
+		scanf("%d", &res);
+
+		if (res == 1)
+		{
+			borderColor(tabColor, header.img.width, header.img.height);
+		}
 
 
 	//#####################################
