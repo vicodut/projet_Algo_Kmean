@@ -47,9 +47,6 @@ void kmeans(color **tab, int width, int height, struct headerFile header)
 	for (i = 0; i < N; ++i)
 	{
 		iterate(cluster, tab, width, height);
-
-		// drawTest ::> fonction qui colorie une image "copie" et qui l'enregistre
-		// drawTest(cluster, tab, width, height, header, i+1);
 	}
 
 

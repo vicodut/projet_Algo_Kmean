@@ -42,5 +42,3 @@ int findNearestCluster(clusters cluster[K], color **tab, int x, int y);
 int dist(int xa, int xb, int ya, int yb);
 void drawCluster(clusters cluster[K], color **tab, int width, int height);
 int rgbDiff(clusters cluster, color tab);
-void create(struct headerFile header, color **tabColor, int nb);
-void drawTest(clusters cluster[K], color **tab, int width, int height, struct headerFile header, int increment);
