@@ -19,8 +19,8 @@ void kmeans(color **tab, int width, int height, struct headerFile header)
 	for (i = 0; i < K; ++i)
 	{
 		// On selectionne un pixel au hazard
-		cluster[i].x = rand()%width;
-		cluster[i].y = rand()%height;
+		cluster[i].x = rand() % width;
+		cluster[i].y = rand() % height;
 
 		// On "ajoute" au total le 1er pixel
 		cluster[i].totalX = cluster[i].x;
