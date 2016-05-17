@@ -42,6 +42,10 @@ int main(int argc, char const *argv[])
 				break;
 			}
 		}
+	} else
+	{
+		printf("!! ATTENTION !!! \n");
+		printf("Il faut que la commande soit lancée tel que: Sortie.exe <nom de l'image>\n");
 	}
 
 	return 0;

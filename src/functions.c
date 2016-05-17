@@ -6,9 +6,9 @@ int menu()
 {
 	int result;
 
-	printf("\t\t -= Menu =-\n");
+	printf("\n\t\t -= Menu =-\n");
 	printf("\t 1: Gestion 1D.\n");
-	printf("\t 2: Gestion 2D.\n");
+	printf("\t 2: Gestion 2D (Partitionnement de l'image disponnible si image couleur).\n");
 	printf("\t *: Quitter.\n");
 	printf("$> ");
 
@@ -27,13 +27,13 @@ void readHeader(struct headerFile* header, FILE *fichier)
 	//#####################################
 	//### AFFICHAGE DES ENTETES
 	//#####################################
-		printf("\t - Entete du fichier - \n");
+		printf("\t -= Entete du fichier =- \n");
 		printf("Signe du fichier : %c", header->sign[0]); printf("%c \n", header->sign[1]);
 		printf("Taille du fichier : %d\n", header->size);
 		printf("Champ reserve : %d\n", header->reserved);
 		printf("Offset de l'image: %d\n\n", header->offset);
 
-		printf("\n\t - Entete de l'image - \n");
+		printf("\n\t -= Entete de l'image =- \n");
 		printf("Taille de l'entete de l'image : %d\n",  header->img.size);
 		printf("Largeur de l'image : %d\n",  header->img.width);
 		printf("Hauteur de l'image : %d\n",  header->img.height);
@@ -97,6 +97,7 @@ void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 		//----------------------------------------
 		// - K-moyenne
 		//----------------------------------------
+		printf("\n\t -= Partitionnement =-\n");
 		printf("- Kmoyenniser l'image ?\n");
 		printf("1- Oui\n");
 		printf("0- Non\n");
@@ -118,6 +119,7 @@ void tab2d(FILE *fichier, FILE *fichierOut, struct headerFile header)
 		//----------------------------------------
 		// - Bordure
 		//----------------------------------------
+		printf("\n\t -= Bordure =-\n");
 		printf("- Donner une bordure ?\n");
 		printf("1- Oui\n");
 		printf("0- Non\n");
