@@ -27,9 +27,9 @@ void kmeans(color **tab, int width, int height, struct headerFile header)
 		cluster[i].totalY = cluster[i].y;
 
 		// On récupère les couleurs de ce pixel
-		cluster[i].b = tab[cluster[i].x][cluster[i].y].b;
-		cluster[i].g = tab[cluster[i].x][cluster[i].y].g;
-		cluster[i].r = tab[cluster[i].x][cluster[i].y].r;
+		cluster[i].b = tab[cluster[i].y][cluster[i].x].b;
+		cluster[i].g = tab[cluster[i].y][cluster[i].x].g;
+		cluster[i].r = tab[cluster[i].y][cluster[i].x].r;
 
 		// On "ajoute" au total des couleurs les couleurs du pixel
 		cluster[i].totalB = cluster[i].b;
@@ -186,9 +186,9 @@ void iterate(clusters cluster[K], color **tab, int width, int height)
 	//---------------------------------- 
 	// - Affectation des pixels a un cluster
 	//---------------------------------- 
-	for (i = 0; i < width; ++i)
+	for (i = 0; i < height; ++i)
 	{
-		for (j = 0; j < height; ++j)
+		for (j = 0; j < width; ++j)
 		{
 			// findNearestCluster ::> Rếcupère le cluster le plus proche
 			index = findNearestCluster(cluster, tab, i, j);
@@ -303,9 +303,9 @@ void drawCluster(clusters cluster[K], color **tab, int width, int height)
 	//---------------------------------- 
 	// - On dessine les cluster sur l'image
 	//---------------------------------- 
-	for (i = 0; i < width; ++i)
+	for (i = 0; i < height; ++i)
 	{
-		for (j = 0; j < height; ++j)
+		for (j = 0; j < width; ++j)
 		{
 			// On recuperer le cluster le plus proche
 			index = findNearestCluster(cluster, tab, i, j);
