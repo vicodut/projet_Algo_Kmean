@@ -63,13 +63,65 @@ void kmeans(color **tab, int width, int height, struct headerFile header)
 
 	srand(time(NULL));
 	
-	if (color == 1)
+	if (center == 1)
 	{
-		for (i = 0; i < K; ++i)
+		if (color == 1)
 		{
-			cluster[i].b = rand() % 255;
-			cluster[i].g = rand() % 255;
-			cluster[i].r = rand() % 255;
+
+			for (i = 0; i < K; ++i)
+			{
+				for (x = -5; x <= 5; ++x)
+				{
+					for (y = -1; y <= 1; ++y)
+					{
+					tab[cluster[i].x + x][cluster[i].y + y].b = cluster[i].totalB;
+					tab[cluster[i].x + x][cluster[i].y + y].g = cluster[i].totalG;
+					tab[cluster[i].x + x][cluster[i].y + y].r = cluster[i].totalR;
+					}
+				}
+
+				for (x = -5; x <= 5; ++x)
+				{
+					for (y = -1; y <= 1; ++y)
+					{
+					tab[cluster[i].x + y][cluster[i].y + x].b = cluster[i].totalB;
+					tab[cluster[i].x + y][cluster[i].y + x].g = cluster[i].totalG;
+					tab[cluster[i].x + y][cluster[i].y + x].r = cluster[i].totalR;
+					}
+				}
+
+			}
+
+		} else
+		{
+
+			for (i = 0; i < K; ++i)
+			{
+				r = rand() * 255;
+				g = rand() * 255;
+				b = rand() * 255œ;
+
+				for (x = -5; x <= 5; ++x)
+				{
+					for (y = -1; y <= 1; ++y)
+					{
+					tab[cluster[i].x + x][cluster[i].y + y].b = b;
+					tab[cluster[i].x + x][cluster[i].y + y].g = g;
+					tab[cluster[i].x + x][cluster[i].y + y].r = r;
+					}
+				}
+
+				for (x = -5; x <= 5; ++x)
+				{
+					for (y = -1; y <= 1; ++y)
+					{
+					tab[cluster[i].x + y][cluster[i].y + x].b = b;
+					tab[cluster[i].x + y][cluster[i].y + x].g = g;
+					tab[cluster[i].x + y][cluster[i].y + x].r = r;
+					}
+				}
+
+			}
 		}
 	}
 
@@ -256,7 +308,7 @@ int findNearestCluster(clusters cluster[K], color **tab, int x, int y)
 		// }
 
 		// Si on gere par couleur ==> rgbDiff ::> Différence entre 2 couleurs
-		if (rgbDiff(cluster[i], tab[x][y]) < rgbDiff(cluster[j], tab[x][y]) )
+		if (rgbDiff(cluster[i], tab[x][y]) < rgbDiff(cluster[j], tab[x][y]) && dist(cluster[i].x, cluster[i].y, x, y) < dist(cluster[j].x, cluster[j].y, x, y))
 		{
 			j = i;
 		}

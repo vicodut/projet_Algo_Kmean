@@ -13,5 +13,5 @@
  * [x] Gestion memoire 2d
  * [x] Gestion memoire 1d
  * [x] Couleur de bordure memoire 2d image couleur
- * [ ] Alocation dynamique de la mémoire (pas avant la boucle mais pendant)
+ * [ ] Gestion de la distance lors de l'evaluation des kmeans
 
