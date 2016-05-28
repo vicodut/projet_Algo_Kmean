@@ -63,69 +63,20 @@ void kmeans(color **tab, int width, int height, struct headerFile header)
 
 	srand(time(NULL));
 	
-	if (center == 1)
+	if (color == 1)
 	{
-		if (color == 1)
+		for (i = 0; i < K; ++i)
 		{
-
-			for (i = 0; i < K; ++i)
-			{
-				for (x = -5; x <= 5; ++x)
-				{
-					for (y = -1; y <= 1; ++y)
-					{
-					tab[cluster[i].x + x][cluster[i].y + y].b = cluster[i].totalB;
-					tab[cluster[i].x + x][cluster[i].y + y].g = cluster[i].totalG;
-					tab[cluster[i].x + x][cluster[i].y + y].r = cluster[i].totalR;
-					}
-				}
-
-				for (x = -5; x <= 5; ++x)
-				{
-					for (y = -1; y <= 1; ++y)
-					{
-					tab[cluster[i].x + y][cluster[i].y + x].b = cluster[i].totalB;
-					tab[cluster[i].x + y][cluster[i].y + x].g = cluster[i].totalG;
-					tab[cluster[i].x + y][cluster[i].y + x].r = cluster[i].totalR;
-					}
-				}
-
-			}
-
-		} else
-		{
-
-			for (i = 0; i < K; ++i)
-			{
-				r = rand() * 255;
-				g = rand() * 255;
-				b = rand() * 255œ;
-
-				for (x = -5; x <= 5; ++x)
-				{
-					for (y = -1; y <= 1; ++y)
-					{
-					tab[cluster[i].x + x][cluster[i].y + y].b = b;
-					tab[cluster[i].x + x][cluster[i].y + y].g = g;
-					tab[cluster[i].x + x][cluster[i].y + y].r = r;
-					}
-				}
-
-				for (x = -5; x <= 5; ++x)
-				{
-					for (y = -1; y <= 1; ++y)
-					{
-					tab[cluster[i].x + y][cluster[i].y + x].b = b;
-					tab[cluster[i].x + y][cluster[i].y + x].g = g;
-					tab[cluster[i].x + y][cluster[i].y + x].r = r;
-					}
-				}
-
-			}
+			cluster[i].b = rand() % 255;
+			cluster[i].g = rand() % 255;
+			cluster[i].r = rand() % 255;
 		}
 	}
 
 
+	//----------------------------------
+	// - On desinne les clusters
+	//----------------------------------
 	drawCluster(cluster, tab, width, height);
 	
 
@@ -139,6 +90,8 @@ void kmeans(color **tab, int width, int height, struct headerFile header)
 	printf("0- Non\n");
 	printf("$> ");
 	scanf("%d", &center);
+
+	printf("color: %d, center: %d\n",color, center );
 	
 	if (center == 1)
 	{
@@ -201,12 +154,6 @@ void kmeans(color **tab, int width, int height, struct headerFile header)
 			}
 		}
 	}
-
-
-	//----------------------------------
-	// - On desinne les clusters
-	//----------------------------------
-	drawCluster(cluster, tab, width, height);
 
 	//----------------------------------
 	// - Paramètres d'entrée
